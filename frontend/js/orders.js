@@ -9,7 +9,7 @@ async function loadOrders() {
     }
 
     const response = await fetch(
-      `http://localhost:8081/api/orders/${userEmail}`,
+      `https://blueberry-beauty-ecommerce.onrender.com/api/orders/${userEmail}`,
     );
 
     const orders = await response.json();

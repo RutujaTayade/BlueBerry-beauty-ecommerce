@@ -2,7 +2,9 @@ let allProducts = [];
 
 async function loadProducts() {
   try {
-    const response = await fetch("http://localhost:8081/api/products");
+    const response = await fetch(
+      "https://blueberry-beauty-ecommerce.onrender.com/api/products",
+    );
 
     const products = await response.json();
 
@@ -124,7 +126,7 @@ async function addToCart(title, price, image) {
 
   try {
     await fetch(
-      "http://localhost:8081/api/cart/add",
+      "https://blueberry-beauty-ecommerce.onrender.com/api/cart/add",
 
       {
         method: "POST",

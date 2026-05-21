@@ -16,7 +16,7 @@ if (registerForm) {
       const password = document.getElementById("password").value;
 
       const response = await fetch(
-        "http://localhost:8081/api/auth/register",
+        "https://blueberry-beauty-ecommerce.onrender.com/api/auth/register",
 
         {
           method: "POST",

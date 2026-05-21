@@ -5,7 +5,7 @@ const productId = params.get("id");
 async function loadProduct() {
   try {
     const response = await fetch(
-      `http://localhost:8081/api/products/${productId}`,
+      `https://blueberry-beauty-ecommerce.onrender.com/api/products/${productId}`,
     );
 
     const product = await response.json();

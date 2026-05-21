@@ -21,7 +21,8 @@ form.addEventListener(
     const description = document.getElementById("description").value;
 
     await fetch(
-      "http://localhost:8081/api/products",
+    "https://blueberry-beauty-ecommerce.onrender.com/api/products"
+      
 
       {
         method: "POST",

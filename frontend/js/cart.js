@@ -8,7 +8,9 @@ async function loadCart() {
   }
 
   try {
-    const response = await fetch(`http://localhost:8081/api/cart/${userEmail}`);
+    const response = await fetch(
+      `https://blueberry-beauty-ecommerce.onrender.com/api/cart/${userEmail}`,
+    );
 
     const cartItems = await response.json();
 
