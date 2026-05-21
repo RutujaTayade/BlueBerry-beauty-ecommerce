@@ -1,0 +1,131 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>BlushBerry</title>
+
+    <link rel="stylesheet" href="css/style.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+  </head>
+
+  <body>
+    <nav class="navbar">
+      <div class="logo">BlushBerry</div>
+
+      <div class="menu-toggle" id="menu-toggle">☰</div>
+
+      <ul class="nav-links" id="nav-links">
+        <li>
+          <a href="index.html"> Home </a>
+        </li>
+
+        <li>
+          <a href="cart.html"> Cart </a>
+        </li>
+
+        <li>
+          <a href="orders.html"> Orders </a>
+        </li>
+
+        <li>
+          <a href="admin.html"> Admin </a>
+        </li>
+
+        <li>
+          <a href="#" onclick="logout()"> Logout </a>
+        </li>
+      </ul>
+    </nav>
+    <header>
+      <h1>BlushBerry</h1>
+
+      <p>BlushBerry Collection</p>
+    </header>
+
+    <section class="top-controls">
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="Search luxury products..."
+      />
+
+      <div class="filters">
+        <button onclick="filterProducts('All')">All</button>
+
+        <button onclick="filterProducts('Lipstick')">Lipstick</button>
+
+        <button onclick="filterProducts('Skincare')">Skincare</button>
+
+        <button onclick="filterProducts('Perfume')">Perfume</button>
+
+        <button onclick="filterProducts('Foundation')">Foundation</button>
+      </div>
+    </section>
+
+    <section class="products-section">
+      <h2>Best Seller Products</h2>
+
+      <div id="products-container"></div>
+    </section>
+
+    <script src="js/script.js"></script>
+    <script src="js/global.js"></script>
+
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-box">
+          <h2>BLUEBERRY</h2>
+
+          <p>
+            BlueBerry beauty products crafted for elegance, confidence, and
+            glow.
+          </p>
+        </div>
+
+        <div class="footer-box">
+          <h3>Quick Links</h3>
+
+          <a href="index.html"> Home </a>
+
+          <a href="cart.html"> Cart </a>
+
+          <a href="orders.html"> Orders </a>
+
+          <a href="admin.html"> Admin </a>
+        </div>
+
+        <div class="footer-box">
+          <h3>Categories</h3>
+
+          <a href="#"> Makeup </a>
+
+          <a href="#"> Skincare </a>
+
+          <a href="#"> Haircare </a>
+
+          <a href="#"> Luxury Kits </a>
+        </div>
+
+        <div class="footer-box">
+          <h3>Contact</h3>
+
+          <p>support@blueberry.com</p>
+
+          <p>+91 8010326671</p>
+
+          <p>Nagpur, India</p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">© 2026 BlueBerry. All Rights Reserved.</div>
+    </footer>
+  </body>
+</html>

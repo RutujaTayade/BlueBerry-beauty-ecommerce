@@ -1,0 +1,121 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Checkout</title>
+
+    <link rel="stylesheet" href="css/checkout.css" />
+  </head>
+
+  <body>
+    <nav class="navbar">
+      <div class="logo">BlueBerry</div>
+
+      <div class="menu-toggle" id="menu-toggle">☰</div>
+
+      <ul class="nav-links" id="nav-links">
+        <li>
+          <a href="index.html"> Home </a>
+        </li>
+
+        <li>
+          <a href="cart.html"> Cart </a>
+        </li>
+
+        <li>
+          <a href="orders.html"> Orders </a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="checkout-wrapper">
+      <div class="checkout-container">
+        <h1>Checkout</h1>
+
+        <form id="checkoutForm">
+          <input type="text" id="fullName" placeholder="Full Name" required />
+
+          <input type="text" id="address" placeholder="Address" required />
+
+          <input type="text" id="city" placeholder="City" required />
+
+          <input type="text" id="state" placeholder="State" required />
+
+          <input type="text" id="pincode" placeholder="Pincode" required />
+
+          <input
+            type="number"
+            id="totalAmount"
+            placeholder="Total Amount"
+            readonly
+          />
+
+          <div class="qr-section">
+            <h3>Scan & Pay</h3>
+
+            <img src="images/qr.png" class="qr-image" />
+          </div>
+
+          <button type="submit">I Have Paid</button>
+        </form>
+      </div>
+    </div>
+
+    <script src="js/global.js"></script>
+
+    <script src="js/checkout.js"></script>
+
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-box">
+          <h2>BLUEBERRY</h2>
+
+          <p>
+            BlueBerry beauty products crafted for elegance, confidence, and
+            glow.
+          </p>
+        </div>
+
+        <div class="footer-box">
+          <h3>Quick Links</h3>
+
+          <a href="index.html"> Home </a>
+
+          <a href="cart.html"> Cart </a>
+
+          <a href="orders.html"> Orders </a>
+
+          <a href="admin.html"> Admin </a>
+        </div>
+
+        <div class="footer-box">
+          <h3>Categories</h3>
+
+          <a href="#"> Makeup </a>
+
+          <a href="#"> Skincare </a>
+
+          <a href="#"> Haircare </a>
+
+          <a href="#"> Luxury Kits </a>
+        </div>
+
+        <div class="footer-box">
+          <h3>Contact</h3>
+
+          <p>support@blueberry.com</p>
+
+          <p>+91 8010326671</p>
+
+          <p>Nagpur, India</p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">© 2026 BlueBerry. All Rights Reserved.</div>
+    </footer>
+  </body>
+</html>

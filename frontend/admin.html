@@ -1,0 +1,130 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Admin Dashboard</title>
+
+    <link rel="stylesheet" href="css/admin.css" />
+  </head>
+
+  <body>
+    <nav class="navbar">
+      <div class="logo">BlushBerry</div>
+
+      <div class="menu-toggle" id="menu-toggle">☰</div>
+
+      <ul class="nav-links" id="nav-links">
+        <li>
+          <a href="index.html"> Home </a>
+        </li>
+
+        <li>
+          <a href="cart.html"> Cart </a>
+        </li>
+
+        <li>
+          <a href="orders.html"> Orders </a>
+        </li>
+
+        <li>
+          <a href="admin.html"> Admin </a>
+        </li>
+
+        <li>
+          <a href="#" onclick="logout()"> Logout </a>
+        </li>
+      </ul>
+    </nav>
+    <header>
+      <h1></h1>Admin Dashboard</h1>
+    </header>
+
+    <section class="admin-section">
+      <form id="productForm">
+        <input type="text" id="title" placeholder="Product Title" required />
+
+        <input type="number" id="price" placeholder="Price" required />
+
+        <input type="text" id="image" placeholder="Image URL" required />
+
+        <input type="text" id="category" placeholder="Category" required />
+
+        <input type="text" id="brand" placeholder="Brand" required />
+
+        <input
+          type="number"
+          step="0.1"
+          id="rating"
+          placeholder="Rating"
+          required
+        />
+
+        <textarea
+          id="description"
+          placeholder="Description"
+          required
+        ></textarea>
+
+        <button type="submit">Add Product</button>
+      </form>
+
+      <div id="admin-products"></div>
+    </section>
+
+    <script src="js/admin.js"></script>
+    <script src="js/global.js"></script>
+
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-box">
+          <h2>BLUEBERRY</h2>
+
+          <p>
+            BlueBerry beauty products crafted for elegance, confidence, and
+            glow.
+          </p>
+        </div>
+
+        <div class="footer-box">
+          <h3>Quick Links</h3>
+
+          <a href="index.html"> Home </a>
+
+          <a href="cart.html"> Cart </a>
+
+          <a href="orders.html"> Orders </a>
+
+          <a href="admin.html"> Admin </a>
+        </div>
+
+        <div class="footer-box">
+          <h3>Categories</h3>
+
+          <a href="#"> Makeup </a>
+
+          <a href="#"> Skincare </a>
+
+          <a href="#"> Haircare </a>
+
+          <a href="#"> Luxury Kits </a>
+        </div>
+
+        <div class="footer-box">
+          <h3>Contact</h3>
+
+          <p>support@blueberry.com</p>
+
+          <p>+91 8010326671</p>
+
+          <p>Nagpur, India</p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">© 2026 BlueBerry. All Rights Reserved.</div>
+    </footer>
+  </body>
+</html>
