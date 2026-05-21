@@ -52,7 +52,7 @@ form.addEventListener(
       const totalAmount = document.getElementById("totalAmount").value;
 
       const response = await fetch(
-        "http://localhost:8081/api/orders",
+        "https://blueberry-beauty-ecommerce.onrender.com/api/orders",
 
         {
           method: "POST",

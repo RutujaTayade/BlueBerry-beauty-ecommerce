@@ -84,7 +84,7 @@ async function loadCart() {
 async function removeItem(id) {
   try {
     await fetch(
-      `http://localhost:8081/api/cart/remove/${id}`,
+      `https://blueberry-beauty-ecommerce.onrender.com/api/cart/remove/${id}`,
 
       {
         method: "DELETE",

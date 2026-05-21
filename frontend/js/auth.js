@@ -60,7 +60,7 @@ if (loginForm) {
       const password = document.getElementById("loginPassword").value;
 
       const response = await fetch(
-        "http://localhost:8081/api/auth/login",
+        "https://blueberry-beauty-ecommerce.onrender.com/api/auth/login",
 
         {
           method: "POST",

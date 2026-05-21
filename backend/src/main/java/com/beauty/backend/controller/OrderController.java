@@ -20,6 +20,8 @@ import com.beauty.backend.repository.OrderRepository;
 
 @CrossOrigin("*")
 
+@CrossOrigin(origins = "*")
+
 public class OrderController {
 
     @Autowired

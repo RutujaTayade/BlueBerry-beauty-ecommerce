@@ -21,6 +21,8 @@ import com.beauty.backend.repository.ProductRepository;
 
 @CrossOrigin("*")
 
+@CrossOrigin(origins = "*")
+
 public class ProductController {
 
     @Autowired

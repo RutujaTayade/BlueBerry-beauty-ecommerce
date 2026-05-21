@@ -52,7 +52,7 @@ form.addEventListener(
 );
 
 async function loadProducts() {
-  const response = await fetch("http://localhost:8081/api/products");
+  const response = await fetch("https://blueberry-beauty-ecommerce.onrender.com/api/products");
 
   const products = await response.json();
 

@@ -21,6 +21,8 @@ import com.beauty.backend.repository.WishlistRepository;
 
 @CrossOrigin("*")
 
+@CrossOrigin(origins = "*")
+
 public class WishlistController {
 
     @Autowired

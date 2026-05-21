@@ -19,7 +19,9 @@ import com.beauty.backend.repository.CartRepository;
 
 @RequestMapping("/api/cart")
 
-@CrossOrigin("*")
+//@CrossOrigin("*")
+
+@CrossOrigin(origins = "*")
 
 public class CartController {
 

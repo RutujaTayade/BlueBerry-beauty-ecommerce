@@ -16,6 +16,8 @@ import com.beauty.backend.repository.UserRepository;
 
 @CrossOrigin("*")
 
+@CrossOrigin(origins = "*")
+
 public class AuthController {
 
     @Autowired
