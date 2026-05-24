@@ -1,5 +1,4 @@
 <!doctype html>
-
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -8,71 +7,40 @@
 
     <title>Product Details</title>
 
-    <link rel="stylesheet" href="css/product.css" />
+    <link rel="stylesheet" href="css/style.css" />
   </head>
 
   <body>
-    <nav class="navbar">
-      <div class="logo">BlushBerry</div>
+    <div class="product-details-container">
+      <div class="details-card">
+        <img id="product-image" class="details-image" />
 
-      <div class="menu-toggle" id="menu-toggle">☰</div>
+        <div class="details-info">
+          <h1 id="product-title"></h1>
 
-      <ul class="nav-links" id="nav-links">
-        <li>
-          <a href="index.html"> Home </a>
-        </li>
+          <h3 id="product-brand"></h3>
 
-        <li>
-          <a href="cart.html"> Cart </a>
-        </li>
+          <h2 id="product-price"></h2>
 
-        <li>
-          <a href="orders.html"> Orders </a>
-        </li>
+          <h3 id="product-rating"></h3>
 
-        <li>
-          <a href="admin.html"> Admin </a>
-        </li>
+          <p id="product-description"></p>
 
-        <li>
-          <a href="#" onclick="logout()"> Logout </a>
-        </li>
-      </ul>
-    </nav>
-    <div class="product-page">
-      <div class="product-image">
-        <img id="product-image" />
-      </div>
-
-      <div class="product-details">
-        <h1 id="product-title"></h1>
-
-        <p class="brand" id="product-brand"></p>
-
-        <p class="rating" id="product-rating"></p>
-
-        <p class="price" id="product-price"></p>
-
-        <p class="description" id="product-description"></p>
-
-        <div class="buttons">
           <button id="cart-btn">Add To Cart</button>
-
-          <button id="buy-btn">Buy Now</button>
         </div>
       </div>
     </div>
 
-    <script src="js/product.js"></script>
+    <script src="js/products.js"></script>
     <script src="js/global.js"></script>
 
     <footer class="footer">
       <div class="footer-container">
         <div class="footer-box">
-          <h2>BLUEBERRY</h2>
+          <h2>BLUSH3BERRY</h2>
 
           <p>
-            BlueBerry beauty products crafted for elegance, confidence, and
+            BlushBerry beauty products crafted for elegance, confidence, and
             glow.
           </p>
         </div>
@@ -104,7 +72,7 @@
         <div class="footer-box">
           <h3>Contact</h3>
 
-          <p>support@blueberry.com</p>
+          <p>support@blushberry.com</p>
 
           <p>+91 8010326671</p>
 
@@ -112,7 +80,7 @@
         </div>
       </div>
 
-      <div class="footer-bottom">© 2026 BlueBerry. All Rights Reserved.</div>
+      <div class="footer-bottom">© 2026 BlushBerry. All Rights Reserved.</div>
     </footer>
   </body>
 </html>

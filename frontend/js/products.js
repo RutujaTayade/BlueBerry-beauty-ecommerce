@@ -10,55 +10,87 @@ async function loadProduct() {
 
     const product = await response.json();
 
-    document.getElementById("product-image").src = product.image;
+    console.log(product);
 
-    document.getElementById("product-title").innerText = product.title;
+    if (!product || !product.id) {
+      document.body.innerHTML = "<h1>Product Not Found</h1>";
 
-    document.getElementById("product-brand").innerText =
-      "Brand: " + product.brand;
+      return;
+    }
 
-    document.getElementById("product-rating").innerText =
-      "⭐ " + product.rating;
+    const image = document.getElementById("product-image");
 
-    document.getElementById("product-price").innerText = "₹" + product.price;
+    const title = document.getElementById("product-title");
 
-    document.getElementById("product-description").innerText =
-      product.description;
+    const brand = document.getElementById("product-brand");
 
-    document.getElementById("cart-btn").addEventListener(
-      "click",
+    const rating = document.getElementById("product-rating");
 
-      async function () {
-        const userEmail = localStorage.getItem("loggedInUser");
+    const price = document.getElementById("product-price");
 
-        await fetch(
-          "http://localhost:8081/api/cart/add",
+    const description = document.getElementById("product-description");
 
-          {
-            method: "POST",
+    image.src = product.image;
 
-            headers: {
-              "Content-Type": "application/json",
-            },
+    title.innerText = product.title;
 
-            body: JSON.stringify({
-              userEmail: userEmail,
+    brand.innerText = "Brand: " + product.brand;
 
-              productTitle: product.title,
+    rating.innerText = "⭐ " + product.rating;
 
-              productPrice: product.price,
+    price.innerText = "₹" + product.price;
 
-              productImage: product.image,
-            }),
-          },
-        );
+    description.innerText = product.description;
 
-        alert("Added To Cart");
-      },
-    );
+    document
+      .getElementById("cart-btn")
+
+      .addEventListener(
+        "click",
+
+        async function () {
+          const userEmail = localStorage.getItem("loggedInUser");
+
+          if (!userEmail) {
+            alert("Please Login First");
+
+            window.location.href = "login.html";
+
+            return;
+          }
+
+          try {
+            await fetch(
+              "https://blueberry-beauty-ecommerce.onrender.com/api/cart/add",
+
+              {
+                method: "POST",
+
+                headers: {
+                  "Content-Type": "application/json",
+                },
+
+                body: JSON.stringify({
+                  userEmail: userEmail,
+
+                  productTitle: product.title,
+
+                  productPrice: product.price,
+
+                  productImage: product.image,
+                }),
+              },
+            );
+
+            alert("Added To Cart");
+          } catch (error) {
+            console.log(error);
+          }
+        },
+      );
   } catch (error) {
     console.log(error);
   }
 }
 
-loadProduct();
+window.onload = loadProduct;

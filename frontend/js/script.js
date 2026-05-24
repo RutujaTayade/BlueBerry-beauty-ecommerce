@@ -8,6 +8,8 @@ async function loadProducts() {
 
     const products = await response.json();
 
+    console.log(products);
+
     allProducts = products;
 
     displayProducts(products);
@@ -29,7 +31,8 @@ function displayProducts(products) {
       <div
       class="wishlist-icon"
 
-      onclick="addToWishlist(
+      onclick="event.stopPropagation();
+      addToWishlist(
       '${product.title}',
       ${product.price},
       '${product.image}'
@@ -39,9 +42,17 @@ function displayProducts(products) {
 
       </div>
 
-      <img src="${product.image}">
+      <img
+      src="${product.image}"
+      class="product-image"
 
-      <div class="product-info">
+      onclick="openProduct(${product.id})"
+      >
+
+      <div
+      class="product-info"
+
+      onclick="openProduct(${product.id})">
 
         <h3>${product.title}</h3>
 
@@ -54,7 +65,10 @@ function displayProducts(products) {
         <div class="buttons">
 
           <button
-          onclick="addToCart(
+
+          onclick="event.stopPropagation();
+
+          addToCart(
           '${product.title}',
           ${product.price},
           '${product.image}'
@@ -67,7 +81,9 @@ function displayProducts(products) {
           <button
           class="quick-btn"
 
-          onclick="openProduct(${product.id})">
+          onclick="event.stopPropagation();
+
+          openProduct(${product.id})">
 
             Quick View
 
@@ -93,7 +109,10 @@ function filterProducts(category) {
   }
 
   const filtered = allProducts.filter((product) => {
-    return product.category.toLowerCase() === category.toLowerCase();
+    return (
+      product.category &&
+      product.category.toLowerCase() === category.toLowerCase()
+    );
   });
 
   displayProducts(filtered);
@@ -106,7 +125,7 @@ document.getElementById("searchInput").addEventListener(
     const searchValue = this.value.toLowerCase();
 
     const filtered = allProducts.filter((product) => {
-      return product.title.toLowerCase().includes(searchValue);
+      return product.title && product.title.toLowerCase().includes(searchValue);
     });
 
     displayProducts(filtered);
@@ -164,7 +183,7 @@ async function addToWishlist(title, price, image) {
 
   try {
     await fetch(
-      "http://localhost:8081/api/wishlist/add",
+      "https://blueberry-beauty-ecommerce.onrender.com/api/wishlist/add",
 
       {
         method: "POST",
