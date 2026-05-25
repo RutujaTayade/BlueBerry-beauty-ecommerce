@@ -1,113 +1,119 @@
-const form = document.getElementById("productForm");
-
-form.addEventListener(
-  "submit",
-
-  async function (e) {
-    e.preventDefault();
-
-    const title = document.getElementById("title").value;
-
-    const price = document.getElementById("price").value;
-
-    const image = document.getElementById("image").value;
-
-    const category = document.getElementById("category").value;
-
-    const brand = document.getElementById("brand").value;
-
-    const rating = document.getElementById("rating").value;
-
-    const description = document.getElementById("description").value;
-
-    await fetch(
-    "https://blueberry-beauty-ecommerce.onrender.com/api/products"
-      
-
-      {
-        method: "POST",
-
-        headers: {
-          "Content-Type": "application/json",
-        },
-
-        body: JSON.stringify({
-          title,
-          price,
-          image,
-          category,
-          brand,
-          rating,
-          description,
-        }),
-      },
+async function loadProducts() {
+  try {
+    const response = await fetch(
+      "https://blueberry-beauty-ecommerce.onrender.com/api/products",
     );
 
-    alert("Product Added");
+    const products = await response.json();
 
-    form.reset();
+    const container = document.getElementById("admin-products");
 
-    loadProducts();
-  },
-);
+    container.innerHTML = "";
 
-async function loadProducts() {
-  const response = await fetch("https://blueberry-beauty-ecommerce.onrender.com/api/products");
+    products.forEach((product) => {
+      const card = `
 
-  const products = await response.json();
+      <div class="admin-card">
 
-  const container = document.getElementById("admin-products");
+        <img src="${product.image}">
 
-  container.innerHTML = "";
+        <div class="admin-info">
 
-  products.forEach((product) => {
-    const card = `
+          <h3>${product.title}</h3>
 
-    <div class="admin-card">
+          <p>${product.category}</p>
 
-      <img src="${product.image}">
+          <h4>₹${product.price}</h4>
 
-      <div class="admin-info">
+          <button
+          class="delete-btn"
 
-        <h3>${product.title}</h3>
+          onclick="deleteProduct(${product.id})">
 
-        <p>${product.category}</p>
+            Delete Product
 
-        <p>₹${product.price}</p>
+          </button>
 
-        <button
-        class="delete-btn"
-
-        onclick="deleteProduct(
-        ${product.id}
-        )">
-
-          Delete Product
-
-        </button>
+        </div>
 
       </div>
 
-    </div>
+      `;
 
-    `;
-
-    container.innerHTML += card;
-  });
+      container.innerHTML += card;
+    });
+  } catch (error) {
+    console.log(error);
+  }
 }
 
-async function deleteProduct(id) {
-  await fetch(
-    `http://localhost:8081/api/products/${id}`,
+document
+  .getElementById("product-form")
 
-    {
-      method: "DELETE",
+  .addEventListener(
+    "submit",
+
+    async function (e) {
+      e.preventDefault();
+
+      const product = {
+        title: document.getElementById("title").value,
+
+        brand: document.getElementById("brand").value,
+
+        category: document.getElementById("category").value,
+
+        image: document.getElementById("image").value,
+
+        price: parseFloat(document.getElementById("price").value),
+
+        rating: parseFloat(document.getElementById("rating").value),
+
+        description: document.getElementById("description").value,
+      };
+
+      try {
+        await fetch(
+          "https://blueberry-beauty-ecommerce.onrender.com/api/products",
+
+          {
+            method: "POST",
+
+            headers: {
+              "Content-Type": "application/json",
+            },
+
+            body: JSON.stringify(product),
+          },
+        );
+
+        alert("Product Added");
+
+        document.getElementById("product-form").reset();
+
+        loadProducts();
+      } catch (error) {
+        console.log(error);
+      }
     },
   );
 
-  alert("Product Deleted");
+async function deleteProduct(id) {
+  try {
+    await fetch(
+      `https://blueberry-beauty-ecommerce.onrender.com/api/products/${id}`,
 
-  loadProducts();
+      {
+        method: "DELETE",
+      },
+    );
+
+    alert("Product Deleted");
+
+    loadProducts();
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 loadProducts();
