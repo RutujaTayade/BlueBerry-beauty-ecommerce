@@ -1,3 +1,5 @@
+let editProductId = null;
+
 async function loadProducts() {
   try {
     const response = await fetch(
@@ -25,14 +27,27 @@ async function loadProducts() {
 
           <h4>₹${product.price}</h4>
 
-          <button
-          class="delete-btn"
+          <div class="admin-buttons">
 
-          onclick="deleteProduct(${product.id})">
+            <button
+            class="edit-btn"
 
-            Delete Product
+            onclick="editProduct(${product.id})">
 
-          </button>
+              Edit
+
+            </button>
+
+            <button
+            class="delete-btn"
+
+            onclick="deleteProduct(${product.id})">
+
+              Delete
+
+            </button>
+
+          </div>
 
         </div>
 
@@ -73,21 +88,44 @@ document
       };
 
       try {
-        await fetch(
-          "https://blueberry-beauty-ecommerce.onrender.com/api/products",
+        if (editProductId === null) {
+          await fetch(
+            "https://blueberry-beauty-ecommerce.onrender.com/api/products",
 
-          {
-            method: "POST",
+            {
+              method: "POST",
 
-            headers: {
-              "Content-Type": "application/json",
+              headers: {
+                "Content-Type": "application/json",
+              },
+
+              body: JSON.stringify(product),
             },
+          );
 
-            body: JSON.stringify(product),
-          },
-        );
+          alert("Product Added");
+        } else {
+          await fetch(
+            `https://blueberry-beauty-ecommerce.onrender.com/api/products/${editProductId}`,
 
-        alert("Product Added");
+            {
+              method: "PUT",
+
+              headers: {
+                "Content-Type": "application/json",
+              },
+
+              body: JSON.stringify(product),
+            },
+          );
+
+          alert("Product Updated");
+
+          editProductId = null;
+
+          document.querySelector("#product-form button").innerText =
+            "Add Product";
+        }
 
         document.getElementById("product-form").reset();
 
@@ -111,6 +149,42 @@ async function deleteProduct(id) {
     alert("Product Deleted");
 
     loadProducts();
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+async function editProduct(id) {
+  try {
+    const response = await fetch(
+      `https://blueberry-beauty-ecommerce.onrender.com/api/products/${id}`,
+    );
+
+    const product = await response.json();
+
+    document.getElementById("title").value = product.title;
+
+    document.getElementById("brand").value = product.brand;
+
+    document.getElementById("category").value = product.category;
+
+    document.getElementById("image").value = product.image;
+
+    document.getElementById("price").value = product.price;
+
+    document.getElementById("rating").value = product.rating;
+
+    document.getElementById("description").value = product.description;
+
+    editProductId = id;
+
+    document.querySelector("#product-form button").innerText = "Update Product";
+
+    window.scrollTo({
+      top: 0,
+
+      behavior: "smooth",
+    });
   } catch (error) {
     console.log(error);
   }
