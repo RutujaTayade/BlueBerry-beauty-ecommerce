@@ -215,3 +215,26 @@ function openProduct(id) {
 }
 
 loadProducts();
+
+document
+  .getElementById("sortSelect")
+
+  .addEventListener(
+    "change",
+
+    function () {
+      const value = this.value;
+
+      let sortedProducts = [...allProducts];
+
+      if (value === "low") {
+        sortedProducts.sort((a, b) => a.price - b.price);
+      } else if (value === "high") {
+        sortedProducts.sort((a, b) => b.price - a.price);
+      } else if (value === "rating") {
+        sortedProducts.sort((a, b) => b.rating - a.rating);
+      }
+
+      displayProducts(sortedProducts);
+    },
+  );
