@@ -14,6 +14,8 @@ async function loadCart() {
 
     const cartItems = await response.json();
 
+    console.log(cartItems);
+
     const container = document.getElementById("cart-container");
 
     const totalElement = document.getElementById("cart-total");
@@ -22,7 +24,7 @@ async function loadCart() {
 
     let total = 0;
 
-    if (cartItems.length === 0) {
+    if (!cartItems || cartItems.length === 0) {
       container.innerHTML = `
 
       <div class="empty-cart">
@@ -39,7 +41,11 @@ async function loadCart() {
     }
 
     cartItems.forEach((item) => {
-      total += item.productPrice;
+      const quantity = item.quantity || 1;
+
+      const subtotal = item.productPrice * quantity;
+
+      total += subtotal;
 
       const card = `
 
@@ -56,6 +62,37 @@ async function loadCart() {
             ₹${item.productPrice}
 
           </p>
+
+          <div class="quantity-box">
+
+            <button
+            onclick="decreaseQuantity(${item.id})">
+
+              -
+
+            </button>
+
+            <span>
+
+              ${quantity}
+
+            </span>
+
+            <button
+            onclick="increaseQuantity(${item.id})">
+
+              +
+
+            </button>
+
+          </div>
+
+          <h4>
+
+            Subtotal:
+            ₹${subtotal}
+
+          </h4>
 
           <button
           class="remove-btn"
@@ -91,7 +128,21 @@ async function removeItem(id) {
       },
     );
 
-    alert("Item Removed");
+    loadCart();
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+async function increaseQuantity(id) {
+  try {
+    await fetch(
+      `https://blueberry-beauty-ecommerce.onrender.com/api/cart/increase/${id}`,
+
+      {
+        method: "PUT",
+      },
+    );
 
     loadCart();
   } catch (error) {
@@ -99,12 +150,31 @@ async function removeItem(id) {
   }
 }
 
-document.getElementById("checkout-btn").addEventListener(
-  "click",
+async function decreaseQuantity(id) {
+  try {
+    await fetch(
+      `https://blueberry-beauty-ecommerce.onrender.com/api/cart/decrease/${id}`,
 
-  function () {
-    window.location.href = "checkout.html";
-  },
-);
+      {
+        method: "PUT",
+      },
+    );
+
+    loadCart();
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+document
+  .getElementById("checkout-btn")
+
+  .addEventListener(
+    "click",
+
+    function () {
+      window.location.href = "checkout.html";
+    },
+  );
 
 loadCart();

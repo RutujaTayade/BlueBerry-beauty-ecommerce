@@ -13,4 +13,9 @@ extends JpaRepository<Cart, Long> {
     String userEmail
     );
 
+    Cart findByUserEmailAndProductTitle(
+String userEmail,
+String productTitle
+);
+
 }
