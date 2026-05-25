@@ -1,6 +1,10 @@
 package com.beauty.backend.model;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
 
@@ -19,6 +23,10 @@ public class Order {
 
     private String fullName;
 
+    private String email;
+
+    private String phone;
+
     private String address;
 
     private String city;
@@ -28,6 +36,8 @@ public class Order {
     private String pincode;
 
     private double totalAmount;
+
+    private String status = "Pending";
 
     public Order() {
     }
@@ -41,8 +51,8 @@ public class Order {
     }
 
     public void setUserEmail(
-    String userEmail
-    ){
+    String userEmail){
+
         this.userEmail = userEmail;
     }
 
@@ -51,9 +61,29 @@ public class Order {
     }
 
     public void setFullName(
-    String fullName
-    ){
+    String fullName){
+
         this.fullName = fullName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(
+    String email){
+
+        this.email = email;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(
+    String phone){
+
+        this.phone = phone;
     }
 
     public String getAddress() {
@@ -61,8 +91,8 @@ public class Order {
     }
 
     public void setAddress(
-    String address
-    ){
+    String address){
+
         this.address = address;
     }
 
@@ -71,8 +101,8 @@ public class Order {
     }
 
     public void setCity(
-    String city
-    ){
+    String city){
+
         this.city = city;
     }
 
@@ -81,8 +111,8 @@ public class Order {
     }
 
     public void setState(
-    String state
-    ){
+    String state){
+
         this.state = state;
     }
 
@@ -91,8 +121,8 @@ public class Order {
     }
 
     public void setPincode(
-    String pincode
-    ){
+    String pincode){
+
         this.pincode = pincode;
     }
 
@@ -101,9 +131,18 @@ public class Order {
     }
 
     public void setTotalAmount(
-    double totalAmount
-    ){
+    double totalAmount){
+
         this.totalAmount = totalAmount;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(
+    String status){
+
+        this.status = status;
+    }
 }
