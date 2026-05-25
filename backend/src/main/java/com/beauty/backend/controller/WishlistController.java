@@ -19,7 +19,7 @@ import com.beauty.backend.repository.WishlistRepository;
 
 @RequestMapping("/api/wishlist")
 
-@CrossOrigin("*")
+//@CrossOrigin("*")
 
 @CrossOrigin(origins = "*")
 

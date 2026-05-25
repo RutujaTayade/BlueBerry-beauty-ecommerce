@@ -19,7 +19,7 @@ import com.beauty.backend.repository.ProductRepository;
 
 @RequestMapping("/api/products")
 
-@CrossOrigin("*")
+//@CrossOrigin("*")
 
 @CrossOrigin(origins = "*")
 

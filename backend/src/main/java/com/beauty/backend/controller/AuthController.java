@@ -14,7 +14,7 @@ import com.beauty.backend.repository.UserRepository;
 
 @RequestMapping("/api/auth")
 
-@CrossOrigin("*")
+//@CrossOrigin("*")
 
 @CrossOrigin(origins = "*")
 

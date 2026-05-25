@@ -11,8 +11,8 @@ public class Cart {
 
     @Id
 
-    @GeneratedValue(strategy =
-    GenerationType.IDENTITY)
+    @GeneratedValue(
+    strategy = GenerationType.IDENTITY)
 
     private Long id;
 
@@ -24,20 +24,32 @@ public class Cart {
 
     private String productImage;
 
+    private int quantity = 1;
+
     public Cart() {
     }
 
     public Cart(
+
     String userEmail,
+
     String productTitle,
+
     double productPrice,
-    String productImage) {
+
+    String productImage,
+
+    int quantity) {
 
         this.userEmail = userEmail;
+
         this.productTitle = productTitle;
+
         this.productPrice = productPrice;
+
         this.productImage = productImage;
 
+        this.quantity = quantity;
     }
 
     public Long getId() {
@@ -48,7 +60,9 @@ public class Cart {
         return userEmail;
     }
 
-    public void setUserEmail(String userEmail) {
+    public void setUserEmail(
+    String userEmail) {
+
         this.userEmail = userEmail;
     }
 
@@ -56,7 +70,9 @@ public class Cart {
         return productTitle;
     }
 
-    public void setProductTitle(String productTitle) {
+    public void setProductTitle(
+    String productTitle) {
+
         this.productTitle = productTitle;
     }
 
@@ -64,7 +80,9 @@ public class Cart {
         return productPrice;
     }
 
-    public void setProductPrice(double productPrice) {
+    public void setProductPrice(
+    double productPrice) {
+
         this.productPrice = productPrice;
     }
 
@@ -72,8 +90,19 @@ public class Cart {
         return productImage;
     }
 
-    public void setProductImage(String productImage) {
+    public void setProductImage(
+    String productImage) {
+
         this.productImage = productImage;
     }
 
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(
+    int quantity) {
+
+        this.quantity = quantity;
+    }
 }
