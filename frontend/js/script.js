@@ -135,12 +135,7 @@ document.getElementById("searchInput").addEventListener(
 async function addToCart(title, price, image) {
   const userEmail = localStorage.getItem("loggedInUser");
 
-  const cartApiBaseUrl =
-    window.location.protocol === "file:" ||
-    window.location.hostname === "localhost" ||
-    window.location.hostname === "127.0.0.1"
-      ? "http://localhost:8080"
-      : window.location.origin;
+  const cartApiBaseUrl = "https://blueberry-beauty-ecommerce.onrender.com";
 
   if (!userEmail) {
     alert("Please Login First");
