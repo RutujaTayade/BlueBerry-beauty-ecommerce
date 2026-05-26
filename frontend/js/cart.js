@@ -1,12 +1,7 @@
+const API_BASE_URL = "https://blueberry-beauty-ecommerce.onrender.com";
+
 async function loadCart() {
   const userEmail = localStorage.getItem("loggedInUser");
-
-  const cartApiBaseUrl =
-    window.location.protocol === "file:" ||
-    window.location.hostname === "localhost" ||
-    window.location.hostname === "127.0.0.1"
-      ? "http://localhost:8080"
-      : window.location.origin;
 
   if (!userEmail) {
     window.location.href = "login.html";
@@ -15,9 +10,7 @@ async function loadCart() {
   }
 
   try {
-    const response = await fetch(
-      `${cartApiBaseUrl}/api/cart/${userEmail}`,
-    );
+    const response = await fetch(`${API_BASE_URL}/api/cart/${userEmail}`);
 
     const cartItems = await response.json();
 
@@ -89,16 +82,9 @@ async function loadCart() {
 }
 
 async function removeItem(id) {
-  const cartApiBaseUrl =
-    window.location.protocol === "file:" ||
-    window.location.hostname === "localhost" ||
-    window.location.hostname === "127.0.0.1"
-      ? "http://localhost:8080"
-      : window.location.origin;
-
   try {
     await fetch(
-      `${cartApiBaseUrl}/api/cart/remove/${id}`,
+      `${API_BASE_URL}/api/cart/remove/${id}`,
 
       {
         method: "DELETE",
@@ -113,15 +99,12 @@ async function removeItem(id) {
   }
 }
 
-document
-  .getElementById("checkout-btn")
+document.getElementById("checkout-btn").addEventListener(
+  "click",
 
-  .addEventListener(
-    "click",
-
-    function () {
-      window.location.href = "checkout.html";
-    },
-  );
+  function () {
+    window.location.href = "checkout.html";
+  },
+);
 
 loadCart();

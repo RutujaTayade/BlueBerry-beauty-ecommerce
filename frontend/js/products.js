@@ -2,18 +2,11 @@ const params = new URLSearchParams(window.location.search);
 
 const productId = params.get("id");
 
-const cartApiBaseUrl =
-  window.location.protocol === "file:" ||
-  window.location.hostname === "localhost" ||
-  window.location.hostname === "127.0.0.1"
-    ? "http://localhost:8080"
-    : window.location.origin;
+const API_BASE_URL = "https://blueberry-beauty-ecommerce.onrender.com";
 
 async function loadProduct() {
   try {
-    const response = await fetch(
-      `https://blueberry-beauty-ecommerce.onrender.com/api/products/${productId}`,
-    );
+    const response = await fetch(`${API_BASE_URL}/api/products/${productId}`);
 
     const product = await response.json();
 
@@ -40,63 +33,57 @@ async function loadProduct() {
     document.getElementById("product-description").innerText =
       product.description;
 
-    document
+    document.getElementById("cart-btn").addEventListener(
+      "click",
 
-      .getElementById("cart-btn")
+      async function () {
+        const userEmail = localStorage.getItem("loggedInUser");
 
-      .addEventListener(
-        "click",
+        if (!userEmail) {
+          alert("Please Login First");
 
-        async function () {
-          const userEmail = localStorage.getItem("loggedInUser");
+          return;
+        }
 
-          console.log(userEmail);
+        try {
+          const cartResponse = await fetch(
+            `${API_BASE_URL}/api/cart/add`,
 
-          if (!userEmail) {
-            alert("Please Login First");
+            {
+              method: "POST",
 
-            return;
-          }
-
-          try {
-            const cartResponse = await fetch(
-              `${cartApiBaseUrl}/api/cart/add`,
-
-              {
-                method: "POST",
-
-                headers: {
-                  "Content-Type": "application/json",
-                },
-
-                body: JSON.stringify({
-                  userEmail: userEmail,
-
-                  productTitle: product.title,
-
-                  productPrice: product.price,
-
-                  productImage: product.image,
-                }),
+              headers: {
+                "Content-Type": "application/json",
               },
+
+              body: JSON.stringify({
+                userEmail: userEmail,
+
+                productTitle: product.title,
+
+                productPrice: product.price,
+
+                productImage: product.image,
+              }),
+            },
+          );
+
+          if (!cartResponse.ok) {
+            throw new Error(
+              `Cart add failed with status ${cartResponse.status}`,
             );
-
-            if (!cartResponse.ok) {
-              throw new Error(
-                `Cart add failed with status ${cartResponse.status}`,
-              );
-            }
-
-            const data = await cartResponse.json();
-
-            console.log(data);
-
-            alert("Added To Cart");
-          } catch (error) {
-            console.log(error);
           }
-        },
-      );
+
+          const data = await cartResponse.json();
+
+          console.log(data);
+
+          alert("Added To Cart");
+        } catch (error) {
+          console.log(error);
+        }
+      },
+    );
   } catch (error) {
     console.log(error);
   }
