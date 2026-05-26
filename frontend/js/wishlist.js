@@ -27,34 +27,50 @@ async function loadWishlist() {
     items.forEach((item) => {
       const card = `
 
-      <div class="cart-card">
+  <div class="cart-card">
 
-        <img src="${item.productImage}">
+    <img src="${item.productImage}">
 
-        <div class="cart-info">
+    <div class="cart-info">
 
-          <h3>${item.productTitle}</h3>
+      <h3>${item.productTitle}</h3>
 
-          <p class="price">
+      <p class="price">
 
-            ₹${item.productPrice}
+        ₹${item.productPrice}
 
-          </p>
+      </p>
 
-          <button
-          class="remove-btn"
+      <div class="buttons">
 
-          onclick="removeWishlist(${item.id})">
+        <button
 
-            Remove
+        onclick="addToCart(
+        '${item.productTitle}',
+        ${item.productPrice},
+        '${item.productImage}'
+        )">
 
-          </button>
+          Add To Cart
 
-        </div>
+        </button>
+
+        <button
+        class="remove-btn"
+
+        onclick="removeWishlist(${item.id})">
+
+          Remove
+
+        </button>
 
       </div>
 
-      `;
+    </div>
+
+  </div>
+
+  `;
 
       container.innerHTML += card;
     });
@@ -80,3 +96,35 @@ async function removeWishlist(id) {
 }
 
 loadWishlist();
+
+async function addToCart(title, price, image) {
+  const userEmail = localStorage.getItem("loggedInUser");
+
+  try {
+    await fetch(
+      `${API_BASE_URL}/api/cart/add`,
+
+      {
+        method: "POST",
+
+        headers: {
+          "Content-Type": "application/json",
+        },
+
+        body: JSON.stringify({
+          userEmail: userEmail,
+
+          productTitle: title,
+
+          productPrice: price,
+
+          productImage: image,
+        }),
+      },
+    );
+
+    alert("Added To Cart");
+  } catch (error) {
+    console.log(error);
+  }
+}

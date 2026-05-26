@@ -1,0 +1,51 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>My Profile</title>
+
+    <link rel="stylesheet" href="css/profile.css" />
+  </head>
+
+  <body>
+    <div class="profile-container">
+      <div class="profile-card">
+        <h1>My Profile</h1>
+
+        <div class="profile-info">
+          <h3 id="user-email"></h3>
+        </div>
+
+        <div class="profile-stats">
+          <div class="stat-box">
+            <h2 id="cart-count">0</h2>
+
+            <p>Cart Items</p>
+          </div>
+
+          <div class="stat-box">
+            <h2 id="wishlist-count">0</h2>
+
+            <p>Wishlist Items</p>
+          </div>
+        </div>
+
+        <div class="profile-buttons">
+          <button onclick="window.location.href = 'cart.html'">My Cart</button>
+
+          <button onclick="window.location.href = 'wishlist.html'">
+            My Wishlist
+          </button>
+
+          <button class="logout-btn" onclick="logoutUser()">Logout</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/profile.js"></script>
+  </body>
+</html>

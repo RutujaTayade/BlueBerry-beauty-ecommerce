@@ -20,6 +20,64 @@
   z-index: 1000;
 }
 
+.profile-icon {
+  width: 42px;
+
+  height: 42px;
+
+  border-radius: 50%;
+
+  background: black;
+
+  color: white !important;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  font-size: 18px;
+
+  transition: 0.3s;
+}
+
+.profile-icon:hover {
+  background: #ff4d6d;
+
+  transform: scale(1.08);
+}
+
+.profile-icon {
+
+  width: 42px;
+
+  height: 42px;
+
+  border-radius: 50%;
+
+  background: black;
+
+  color: white !important;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  font-size: 18px;
+
+  transition: 0.3s;
+}
+
+.profile-icon:hover {
+
+  background: #ff4d6d;
+
+  transform: scale(1.08);
+}
+
 .logo {
   font-size: 2rem;
 
