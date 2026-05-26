@@ -19,3 +19,27 @@ if (menuToggle) {
     },
   );
 }
+
+
+
+// function showToast(message) {
+
+//   const toast =
+//   document.getElementById("toast");
+
+//   toast.innerText = message;
+
+//   toast.style.opacity = "1";
+
+//   toast.style.transform =
+//   "translateX(0)";
+
+//   setTimeout(() => {
+
+//     toast.style.opacity = "0";
+
+//     toast.style.transform =
+//     "translateX(120px)";
+
+//   }, 2500);
+// }
