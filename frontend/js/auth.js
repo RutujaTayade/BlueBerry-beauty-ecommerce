@@ -15,30 +15,36 @@ if (registerForm) {
 
       const password = document.getElementById("password").value;
 
-      const response = await fetch(
-        "https://blueberry-beauty-ecommerce.onrender.com/api/auth/register",
+      try {
+        const response = await fetch(
+          "https://blueberry-beauty-ecommerce.onrender.com/api/auth/register",
 
-        {
-          method: "POST",
+          {
+            method: "POST",
 
-          headers: {
-            "Content-Type": "application/json",
+            headers: {
+              "Content-Type": "application/json",
+            },
+
+            body: JSON.stringify({
+              name,
+              email,
+              password,
+            }),
           },
+        );
 
-          body: JSON.stringify({
-            name,
-            email,
-            password,
-          }),
-        },
-      );
+        const data = await response.text();
 
-      const data = await response.text();
+        alert(data);
 
-      alert(data);
+        if (data === "Registration Successful") {
+          window.location.href = "login.html";
+        }
+      } catch (error) {
+        console.log(error);
 
-      if (data === "Registration Successful") {
-        window.location.href = "login.html";
+        alert("Registration Failed");
       }
     },
   );
@@ -59,31 +65,41 @@ if (loginForm) {
 
       const password = document.getElementById("loginPassword").value;
 
-      const response = await fetch(
-        "https://blueberry-beauty-ecommerce.onrender.com/api/auth/login",
+      try {
+        const response = await fetch(
+          "https://blueberry-beauty-ecommerce.onrender.com/api/auth/login",
 
-        {
-          method: "POST",
+          {
+            method: "POST",
 
-          headers: {
-            "Content-Type": "application/json",
+            headers: {
+              "Content-Type": "application/json",
+            },
+
+            body: JSON.stringify({
+              email,
+              password,
+            }),
           },
+        );
 
-          body: JSON.stringify({
-            email,
-            password,
-          }),
-        },
-      );
+        const text = await response.text();
 
-      const data = await response.text();
+        console.log(text);
 
-      alert(data);
+        if (text.includes("Login Successful")) {
+          localStorage.setItem("loggedInUser", email);
 
-      if (data === "Login Successful") {
-        localStorage.setItem("loggedInUser", email);
+          alert("Login Successful");
 
-        window.location.href = "index.html";
+          window.location.href = "index.html";
+        } else {
+          alert(text);
+        }
+      } catch (error) {
+        console.log(error);
+
+        alert("Login Failed");
       }
     },
   );

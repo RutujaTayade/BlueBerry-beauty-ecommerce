@@ -24,8 +24,6 @@ public class Cart {
 
     private String productImage;
 
-    private int quantity = 1;
-
     public Cart() {
     }
 
@@ -37,9 +35,7 @@ public class Cart {
 
     double productPrice,
 
-    String productImage,
-
-    int quantity) {
+    String productImage) {
 
         this.userEmail = userEmail;
 
@@ -48,8 +44,6 @@ public class Cart {
         this.productPrice = productPrice;
 
         this.productImage = productImage;
-
-        this.quantity = quantity;
     }
 
     public Long getId() {
@@ -60,9 +54,7 @@ public class Cart {
         return userEmail;
     }
 
-    public void setUserEmail(
-    String userEmail) {
-
+    public void setUserEmail(String userEmail) {
         this.userEmail = userEmail;
     }
 
@@ -70,9 +62,7 @@ public class Cart {
         return productTitle;
     }
 
-    public void setProductTitle(
-    String productTitle) {
-
+    public void setProductTitle(String productTitle) {
         this.productTitle = productTitle;
     }
 
@@ -80,9 +70,7 @@ public class Cart {
         return productPrice;
     }
 
-    public void setProductPrice(
-    double productPrice) {
-
+    public void setProductPrice(double productPrice) {
         this.productPrice = productPrice;
     }
 
@@ -90,19 +78,7 @@ public class Cart {
         return productImage;
     }
 
-    public void setProductImage(
-    String productImage) {
-
+    public void setProductImage(String productImage) {
         this.productImage = productImage;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(
-    int quantity) {
-
-        this.quantity = quantity;
     }
 }

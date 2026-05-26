@@ -2,6 +2,13 @@ const params = new URLSearchParams(window.location.search);
 
 const productId = params.get("id");
 
+const cartApiBaseUrl =
+  window.location.protocol === "file:" ||
+  window.location.hostname === "localhost" ||
+  window.location.hostname === "127.0.0.1"
+    ? "http://localhost:8080"
+    : window.location.origin;
+
 async function loadProduct() {
   try {
     const response = await fetch(
@@ -18,31 +25,23 @@ async function loadProduct() {
       return;
     }
 
-    const image = document.getElementById("product-image");
+    document.getElementById("product-image").src = product.image;
 
-    const title = document.getElementById("product-title");
+    document.getElementById("product-title").innerText = product.title;
 
-    const brand = document.getElementById("product-brand");
+    document.getElementById("product-brand").innerText =
+      "Brand: " + product.brand;
 
-    const rating = document.getElementById("product-rating");
+    document.getElementById("product-rating").innerText =
+      "⭐ " + product.rating;
 
-    const price = document.getElementById("product-price");
+    document.getElementById("product-price").innerText = "₹" + product.price;
 
-    const description = document.getElementById("product-description");
-
-    image.src = product.image;
-
-    title.innerText = product.title;
-
-    brand.innerText = "Brand: " + product.brand;
-
-    rating.innerText = "⭐ " + product.rating;
-
-    price.innerText = "₹" + product.price;
-
-    description.innerText = product.description;
+    document.getElementById("product-description").innerText =
+      product.description;
 
     document
+
       .getElementById("cart-btn")
 
       .addEventListener(
@@ -51,17 +50,17 @@ async function loadProduct() {
         async function () {
           const userEmail = localStorage.getItem("loggedInUser");
 
+          console.log(userEmail);
+
           if (!userEmail) {
             alert("Please Login First");
-
-            window.location.href = "login.html";
 
             return;
           }
 
           try {
-            await fetch(
-              "https://blueberry-beauty-ecommerce.onrender.com/api/cart/add",
+            const cartResponse = await fetch(
+              `${cartApiBaseUrl}/api/cart/add`,
 
               {
                 method: "POST",
@@ -81,6 +80,16 @@ async function loadProduct() {
                 }),
               },
             );
+
+            if (!cartResponse.ok) {
+              throw new Error(
+                `Cart add failed with status ${cartResponse.status}`,
+              );
+            }
+
+            const data = await cartResponse.json();
+
+            console.log(data);
 
             alert("Added To Cart");
           } catch (error) {

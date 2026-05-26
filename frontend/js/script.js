@@ -135,6 +135,13 @@ document.getElementById("searchInput").addEventListener(
 async function addToCart(title, price, image) {
   const userEmail = localStorage.getItem("loggedInUser");
 
+  const cartApiBaseUrl =
+    window.location.protocol === "file:" ||
+    window.location.hostname === "localhost" ||
+    window.location.hostname === "127.0.0.1"
+      ? "http://localhost:8080"
+      : window.location.origin;
+
   if (!userEmail) {
     alert("Please Login First");
 
@@ -144,27 +151,27 @@ async function addToCart(title, price, image) {
   }
 
   try {
-    await fetch(
-      "https://blueberry-beauty-ecommerce.onrender.com/api/cart/add",
+    const cartResponse = await fetch(`${cartApiBaseUrl}/api/cart/add`, {
+      method: "POST",
 
-      {
-        method: "POST",
-
-        headers: {
-          "Content-Type": "application/json",
-        },
-
-        body: JSON.stringify({
-          userEmail: userEmail,
-
-          productTitle: title,
-
-          productPrice: price,
-
-          productImage: image,
-        }),
+      headers: {
+        "Content-Type": "application/json",
       },
-    );
+
+      body: JSON.stringify({
+        userEmail: userEmail,
+
+        productTitle: title,
+
+        productPrice: price,
+
+        productImage: image,
+      }),
+    });
+
+    if (!cartResponse.ok) {
+      throw new Error(`Cart add failed with status ${cartResponse.status}`);
+    }
 
     alert("Added To Cart");
   } catch (error) {

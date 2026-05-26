@@ -1,6 +1,13 @@
 async function loadCart() {
   const userEmail = localStorage.getItem("loggedInUser");
 
+  const cartApiBaseUrl =
+    window.location.protocol === "file:" ||
+    window.location.hostname === "localhost" ||
+    window.location.hostname === "127.0.0.1"
+      ? "http://localhost:8080"
+      : window.location.origin;
+
   if (!userEmail) {
     window.location.href = "login.html";
 
@@ -9,12 +16,10 @@ async function loadCart() {
 
   try {
     const response = await fetch(
-      `https://blueberry-beauty-ecommerce.onrender.com/api/cart/${userEmail}`,
+      `${cartApiBaseUrl}/api/cart/${userEmail}`,
     );
 
     const cartItems = await response.json();
-
-    console.log(cartItems);
 
     const container = document.getElementById("cart-container");
 
@@ -24,7 +29,7 @@ async function loadCart() {
 
     let total = 0;
 
-    if (!cartItems || cartItems.length === 0) {
+    if (cartItems.length === 0) {
       container.innerHTML = `
 
       <div class="empty-cart">
@@ -41,11 +46,7 @@ async function loadCart() {
     }
 
     cartItems.forEach((item) => {
-      const quantity = item.quantity || 1;
-
-      const subtotal = item.productPrice * quantity;
-
-      total += subtotal;
+      total += item.productPrice;
 
       const card = `
 
@@ -62,37 +63,6 @@ async function loadCart() {
             ₹${item.productPrice}
 
           </p>
-
-          <div class="quantity-box">
-
-            <button
-            onclick="decreaseQuantity(${item.id})">
-
-              -
-
-            </button>
-
-            <span>
-
-              ${quantity}
-
-            </span>
-
-            <button
-            onclick="increaseQuantity(${item.id})">
-
-              +
-
-            </button>
-
-          </div>
-
-          <h4>
-
-            Subtotal:
-            ₹${subtotal}
-
-          </h4>
 
           <button
           class="remove-btn"
@@ -119,46 +89,23 @@ async function loadCart() {
 }
 
 async function removeItem(id) {
+  const cartApiBaseUrl =
+    window.location.protocol === "file:" ||
+    window.location.hostname === "localhost" ||
+    window.location.hostname === "127.0.0.1"
+      ? "http://localhost:8080"
+      : window.location.origin;
+
   try {
     await fetch(
-      `https://blueberry-beauty-ecommerce.onrender.com/api/cart/remove/${id}`,
+      `${cartApiBaseUrl}/api/cart/remove/${id}`,
 
       {
         method: "DELETE",
       },
     );
 
-    loadCart();
-  } catch (error) {
-    console.log(error);
-  }
-}
-
-async function increaseQuantity(id) {
-  try {
-    await fetch(
-      `https://blueberry-beauty-ecommerce.onrender.com/api/cart/increase/${id}`,
-
-      {
-        method: "PUT",
-      },
-    );
-
-    loadCart();
-  } catch (error) {
-    console.log(error);
-  }
-}
-
-async function decreaseQuantity(id) {
-  try {
-    await fetch(
-      `https://blueberry-beauty-ecommerce.onrender.com/api/cart/decrease/${id}`,
-
-      {
-        method: "PUT",
-      },
-    );
+    alert("Item Removed");
 
     loadCart();
   } catch (error) {

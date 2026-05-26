@@ -14,21 +14,22 @@ import com.beauty.backend.repository.UserRepository;
 
 @RequestMapping("/api/auth")
 
-//@CrossOrigin("*")
-
 @CrossOrigin(origins = "*")
 
 public class AuthController {
 
     @Autowired
+
     private UserRepository userRepository;
 
     @PostMapping("/register")
 
     public String registerUser(
-    @RequestBody User user) {
+
+    @RequestBody User user){
 
         User existingUser =
+
         userRepository.findByEmail(
         user.getEmail()
         );
@@ -36,21 +37,21 @@ public class AuthController {
         if(existingUser != null){
 
             return "Email already exists";
-
         }
 
         userRepository.save(user);
 
         return "Registration Successful";
-
     }
 
     @PostMapping("/login")
 
-    public String loginUser(
-    @RequestBody User user) {
+    public Object loginUser(
+
+    @RequestBody User user){
 
         User existingUser =
+
         userRepository.findByEmail(
         user.getEmail()
         );
@@ -58,20 +59,23 @@ public class AuthController {
         if(existingUser == null){
 
             return "User not found";
-
         }
 
-        if(
-        existingUser.getPassword()
-        .equals(user.getPassword())
-        ){
+        if(existingUser.getPassword()
 
-            return "Login Successful";
+        .equals(user.getPassword())){
 
+            return java.util.Map.of(
+
+            "message",
+            "Login Successful",
+
+
+            "email",
+            existingUser.getEmail()
+            );
         }
 
         return "Invalid Password";
-
     }
-
 }

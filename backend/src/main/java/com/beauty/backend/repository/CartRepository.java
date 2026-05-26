@@ -12,10 +12,4 @@ extends JpaRepository<Cart, Long> {
     List<Cart> findByUserEmail(
     String userEmail
     );
-
-    Cart findByUserEmailAndProductTitle(
-String userEmail,
-String productTitle
-);
-
 }
