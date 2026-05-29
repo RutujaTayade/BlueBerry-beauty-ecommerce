@@ -8,6 +8,15 @@
 
     <title>Register</title>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
     <link rel="stylesheet" href="css/auth.css" />
   </head>
 
@@ -18,14 +27,23 @@
 
         <input type="text" id="name" placeholder="Full Name" required />
 
-        <input type="email" id="email" placeholder="Email" required />
+        <input type="email" id="email" placeholder="Email Address" required />
+
+        <input type="text" id="phone" placeholder="Phone Number" required />
 
         <input type="password" id="password" placeholder="Password" required />
+
+        <input
+          type="password"
+          id="confirmPassword"
+          placeholder="Confirm Password"
+          required
+        />
 
         <button type="submit">Register</button>
 
         <p>
-          Already have account?
+          Already have an account?
 
           <a href="login.html"> Login </a>
         </p>
@@ -33,6 +51,7 @@
     </div>
 
     <script src="js/auth.js"></script>
+
     <script src="js/global.js"></script>
   </body>
 </html>

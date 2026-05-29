@@ -1,3 +1,212 @@
+:root {
+
+  --bg-main: #f3e7da;
+
+  --bg-soft: #efe1d3;
+
+  --primary: #8b5e6c;
+
+  --primary-dark: #6f4753;
+
+  --text-dark: #2e1f1f;
+
+  --text-light: #fffaf7;
+
+  --card-bg: #fff8f3;
+
+  --shadow:
+  rgba(139, 94, 108, 0.15);
+}
+
+:root {
+
+  /* COLORS */
+
+  --primary: #8b5e6c;
+
+  --primary-dark: #6f4753;
+
+  --bg-main: #f7f1eb;
+
+  --card-bg: #fffaf7;
+
+  --text-dark: #2e1f1f;
+
+  --text-light: #ffffff;
+
+  /* TYPOGRAPHY */
+
+  --font-heading:
+  'Playfair Display', serif;
+
+  --font-body:
+  'Poppins', sans-serif;
+
+  /* FONT SIZES */
+
+  --hero-title: 4rem;
+
+  --section-title: 2.3rem;
+
+  --card-title: 1.2rem;
+
+  --body-text: 1rem;
+
+  --small-text: 0.9rem;
+
+  /* SPACING */
+
+  --section-gap: 90px;
+
+  --card-padding: 24px;
+
+  --button-padding:
+  14px 28px;
+
+  /* BORDER RADIUS */
+
+  --radius-small: 10px;
+
+  --radius-medium: 18px;
+
+  --radius-large: 28px;
+
+  /* SHADOWS */
+
+  --shadow-light:
+  0 4px 12px rgba(0,0,0,0.08);
+
+  --shadow-medium:
+  0 10px 25px rgba(0,0,0,0.12);
+
+  --shadow-heavy:
+  0 18px 40px rgba(0,0,0,0.18);
+
+  /* TRANSITIONS */
+
+  --transition:
+  0.3s ease;
+}
+
+body {
+
+  font-family:
+  var(--font-body);
+
+  color:
+  var(--text-dark);
+
+  background:
+  var(--bg-main);
+
+  line-height: 1.6;
+}
+
+h1,
+h2,
+h3,
+.logo {
+
+  font-family:
+  var(--font-heading);
+}
+
+button {
+
+  padding:
+  var(--button-padding);
+
+  border: none;
+
+  border-radius:
+  var(--radius-medium);
+
+  background:
+  var(--primary);
+
+  color:
+  var(--text-light);
+
+  cursor: pointer;
+
+  transition:
+  var(--transition);
+
+  font-weight: 500;
+}
+
+button:hover {
+
+  transform:
+  translateY(-3px);
+
+  background:
+  var(--primary-dark);
+
+  box-shadow:
+  var(--shadow-light);
+}
+
+button {
+
+  padding:
+  var(--button-padding);
+
+  border: none;
+
+  border-radius:
+  var(--radius-medium);
+
+  background:
+  var(--primary);
+
+  color:
+  var(--text-light);
+
+  cursor: pointer;
+
+  transition:
+  var(--transition);
+
+  font-weight: 500;
+}
+
+button:hover {
+
+  transform:
+  translateY(-3px);
+
+  background:
+  var(--primary-dark);
+
+  box-shadow:
+  var(--shadow-light);
+}
+
+@media(max-width:768px){
+
+  :root {
+
+    --hero-title: 2.4rem;
+
+    --section-title: 1.8rem;
+
+    --section-gap: 60px;
+  }
+}
+
+@media(max-width:768px){
+
+  :root {
+
+    --section-gap: 60px;
+
+    --container-padding: 18px;
+
+    --card-gap: 16px;
+  }
+}
+
 .navbar {
   position: sticky;
 
@@ -381,13 +590,22 @@
 }
 
 body {
-  font-family: Arial;
+  font-family: 'Poppins', sans-serif;
 
   background: #f8f1ec;
 
   color: #2b1b17;
 }
 
+h1,
+h2,
+h3,
+.logo {
+
+  font-family:
+  'Playfair Display',
+  serif;
+}
 body {
   animation: fadeIn 0.6s ease;
 }

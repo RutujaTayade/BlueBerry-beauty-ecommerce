@@ -9,11 +9,61 @@ if (registerForm) {
     async function (e) {
       e.preventDefault();
 
-      const name = document.getElementById("name").value;
+      const name = document.getElementById("name").value.trim();
 
-      const email = document.getElementById("email").value;
+      const email = document.getElementById("email").value.trim();
+
+      const phone = document.getElementById("phone").value.trim();
 
       const password = document.getElementById("password").value;
+
+      const confirmPassword = document.getElementById("confirmPassword").value;
+
+      /* REQUIRED FIELD CHECK */
+
+      if (!name || !email || !phone || !password || !confirmPassword) {
+        alert("All fields are required");
+
+        return;
+      }
+
+      /* EMAIL VALIDATION */
+
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      if (!emailPattern.test(email)) {
+        alert("Enter valid email");
+
+        return;
+      }
+
+      /* PHONE VALIDATION */
+
+      if (phone.length !== 10) {
+        alert("Phone number must be 10 digits");
+
+        return;
+      }
+
+      /* STRONG PASSWORD */
+
+      const strongPassword = /^(?=.*[A-Z])(?=.*[0-9]).{8,}$/;
+
+      if (!strongPassword.test(password)) {
+        alert(
+          "Password must contain uppercase letter, number and minimum 8 characters",
+        );
+
+        return;
+      }
+
+      /* CONFIRM PASSWORD */
+
+      if (password !== confirmPassword) {
+        alert("Passwords do not match");
+
+        return;
+      }
 
       try {
         const response = await fetch(
@@ -83,18 +133,20 @@ if (loginForm) {
           },
         );
 
-        const text = await response.text();
+        const data = await response.json();
 
-        console.log(text);
+        console.log(data);
 
-        if (text.includes("Login Successful")) {
-          localStorage.setItem("loggedInUser", email);
+        if (data.message === "Login Successful") {
+          localStorage.setItem("token", data.token);
+
+          localStorage.setItem("loggedInUser", data.email);
 
           alert("Login Successful");
 
           window.location.href = "index.html";
         } else {
-          alert(text);
+          alert("Invalid Credentials");
         }
       } catch (error) {
         console.log(error);

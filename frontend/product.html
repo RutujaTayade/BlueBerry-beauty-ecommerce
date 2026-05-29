@@ -8,11 +8,9 @@
     <title>Product Details</title>
 
     <link rel="stylesheet" href="css/style.css" />
-
   </head>
 
   <body>
-    console.log("PRODUCT JS LOADED");
     <div class="product-details-container">
       <div class="details-card">
         <img id="product-image" class="details-image" />
@@ -31,6 +29,30 @@
           <button id="cart-btn">Add To Cart</button>
         </div>
       </div>
+    </div>
+
+    <div class="review-section">
+      <h2>Reviews</h2>
+
+      <div id="reviews-container"></div>
+
+      <h3>Write Review</h3>
+
+      <select id="rating">
+        <option value="5">★★★★★</option>
+
+        <option value="4">★★★★</option>
+
+        <option value="3">★★★</option>
+
+        <option value="2">★★</option>
+
+        <option value="1">★</option>
+      </select>
+
+      <textarea id="reviewComment" placeholder="Write your review"> </textarea>
+
+      <button id="submitReview">Submit Review</button>
     </div>
 
     <script src="js/products.js"></script>
@@ -94,6 +116,5 @@
 
       <div class="footer-bottom">© 2026 BlushBerry. All Rights Reserved.</div>
     </footer>
-    
   </body>
 </html>
